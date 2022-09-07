@@ -9,9 +9,21 @@
 <body>
 <h1 style="text-align:center ;">Webbord KakKak</h1><hr>
 <div align="center">
-    เข้าสู่ระบบด้วย<br>
-    Login = <?php echo $_POST["login"]; ?><br>
-    Password = <?php echo $_POST["pwd"]; ?><br>
+    <?php
+    $login=$_POST["login"];
+    $pwd=$_POST["pwd"];
+        if($login=="admin" && $pwd=="ad1234"){
+            echo "ยินดีต้อนรับคุณ ADMIN";
+        }
+        elseif($login=="member" && $pwd=="mem1234"){
+            echo "ยินดีต้อนรับคุณ MEMBER";
+        }
+        else{
+            echo "ชื่อบัญชีหรือรหัสผ่านไม่ถูกด้อง";
+        }
+    ?><br>
+    <a  href = "index.php">กลับไปหน้าหลัก</a>
+    
 </div>
 </body>
 </html>
