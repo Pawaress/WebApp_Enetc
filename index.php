@@ -23,9 +23,9 @@
 
     <?php include "nav.php";?>
    
-   
-    <form action="post.php"method="get">
    <br>
+    <form action="post.php"method="get">
+   
    <div class="d-flex">
         <div>
             <label >หมวดหมู่</label>
