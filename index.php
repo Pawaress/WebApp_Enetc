@@ -80,11 +80,10 @@
 
     <h1 style="text-align:center ;">Webbord KakKak</h1>
     <?php include "nav.php";?>
-    <hr>
     
-    <form action="post.php"method="get">
-   
-    <div class="d-flex">
+    
+    <br>
+   <div class="d-flex justify-content-between">
         <div>
             <label >หมวดหมู่</label>
             <span class="dropdown">
@@ -99,16 +98,14 @@
             </span>
         </div>
 
+        <div>
+            <a href="newpost.php"class="btn btn-success btn-sm"><i class="bi bi-plus"></i> สร้างกรทู้ใหม่</a>
+        </div>
+
    </div>
-       
-         
-        
-    
     <br>
-    <a  href = "newpost.php">สร้างกระทู้ใหม่</a>
-    <ul>
-
-
+    <table class="table table-striped">
+        
     <?php
     
         /*for($i=1;$i<=10;$i++){
@@ -117,20 +114,19 @@
 
         $i=1;
         do{
-            echo "<li><a href = post.php?id=$i>กระทู้ที่ $i</a>"
-            ;
-            if($_SESSION['role']=='a'){
-                echo "&nbsp;&nbsp;&nbsp;<a  href = delete.php?id=$i>ลบ</a>";
-            }
-            echo "</li>";
+            echo "<tr><td><a href = post.php?id=$i style=text-decoration:none>กระทู้ที่ $i</a></td>";
             $i++;
+            if($_SESSION['role']=='a'){
+                echo "<td><a href = post.php?id=$i class ='btn btn-danger btn-sm'> <i class='bi bi-trash'></i> </a></td>";
+
+            }
+            echo "</tr>";
         }while($i<=10);
 
     /* แบบเก่า  <li><a href = "post.php?id=1">กระทู้ที่ 1</a></li>  */
     ?>
-     
-    </ul>
-</form>
+
+    </table>
 </div>
 </body>
 
