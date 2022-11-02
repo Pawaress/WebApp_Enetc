@@ -6,7 +6,7 @@ $name=$_POST['name'];
 $gender=$_POST['gender'];
 $email=$_POST['email'];
 
-$conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+$conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8" ,   "root"  ,   "");
 $passwd=sha1($passwd);
 $sql = "SELECT * FROM user where login='$login'";
 $result=$conn->query($sql);
