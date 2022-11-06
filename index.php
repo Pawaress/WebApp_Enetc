@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">  
 <script>
         function myFunction1(){
+            
             let r=confirm("ต้องการจะลบจริงหรือไม่");
             return r;
         }
@@ -53,16 +54,35 @@
         
     <?php
     
+    $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+    $conn -> exec("SET CHARACTER SET utf8");
+    $data = $conn->query("SELECT p.id,p.title,p.content,p.post_date ,c.name,u.name FROM post p , user u , category c WHERE p.cat_id = c.id AND p.user_id = u.id order by p.id DESC;");
+    if($data !== false){
+        while($row = $data->fetch()){
+           // echo "<tr><td><a href=\"post.php?id=".$row['0'].'\" style=text-decoration:none></a>"; 
+           echo "<tr><td>";
+           echo "[ ".$row['4']." ] ";   
+           echo "<a href=\"post.php?id=".$row['0']."\" style=text-decoration:none>";            
+           echo $row['1']."</a>";
+           echo "<br>";
+           echo $row['5']." - " . $row['3'];
+           echo "</td></tr>";   
+        }
+        $conn = null;
+
+    }
+
+
         /*for($i=1;$i<=10;$i++){
             echo "<li><a href = post.php?id=$i>กระทู้ที่ $i</a></li>";
         }*/
-
+    /*
         $i=1;
         do{
             echo "<tr><td><a href = post.php?id=$i style=text-decoration:none>กระทู้ที่ $i</a></td></tr>";
             $i++;
         }while($i<=10);
-
+    */
     /* แบบเก่า  <li><a href = "post.php?id=1">กระทู้ที่ 1</a></li>  */
     ?>
 
@@ -111,14 +131,14 @@
    </div>
     <br>
     <table class="table table-striped">
-        
+  
     <?php
-    
+/*------------------------------------ old ver------------------------------    
         /*for($i=1;$i<=10;$i++){
             echo "<li><a href = post.php?id=$i>กระทู้ที่ $i</a></li>";
         }*/
 
-        $i=1;
+       /* $i=1;
         do{
             echo "<tr><td><a href = post.php?id=$i style=text-decoration:none>กระทู้ที่ $i</a></td>";
             $i++;
@@ -128,9 +148,47 @@
             }
             echo "</tr>";
         }while($i<=10);
-
+       */
     /* แบบเก่า  <li><a href = "post.php?id=1">กระทู้ที่ 1</a></li>  */
-    ?>
+    /*-----------------------------------------------end old ver------------------*/
+
+    /*-----------------------------note------------------*/
+    $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+    $conn -> exec("SET CHARACTER SET utf8");
+    $data = $conn->query("SELECT p.id,p.title,p.content,p.post_date ,c.name,u.name FROM post p , user u , category c WHERE p.cat_id = c.id AND p.user_id = u.id order by p.id DESC;");
+    if($data !== false){
+        while($row = $data->fetch()){
+           // echo "<tr><td><a href=\"post.php?id=".$row['0'].'\" style=text-decoration:none></a>"; 
+           echo "<tr><td>";
+           echo "[ ".$row['4']." ] ";   
+           echo "<a href=\"post.php?id=".$row['0']."\" style=text-decoration:none>";            
+           echo $row['1']."</a>";
+           echo "<br>";
+           echo $row['5']." - " . $row['3'];
+           if($_SESSION['role']=='a'){
+              echo "<td><a href = delete.php?id=$row[0] class ='btn btn-danger btn-sm'  onclick='return myFunction1();'> <i class='bi bi-trash'></i> </a></td>";
+
+            }
+           echo "</td></tr>";   
+        }
+        $conn = null;
+
+    }
+    /*-------------------------------end note------------*/
+    /*--------------------do <yourself------------------->*/
+    
+
+
+
+
+
+    /*for($i=1;$i<=10;$i++){ 
+        echo "<tr><td><a href=\"post.php?id=$i\" style=text-decoration:none>กระทู้ที่ $i</a>";
+    }*/
+    
+
+    
+    ?> 
 
     </table>
 </div>
